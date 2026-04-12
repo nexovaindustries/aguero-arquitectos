@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>INICIO | AGÜERO ARQUITECTOS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./preloader.js"></script>
+    <script src="./tailwind.config.js"></script>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300">
+    <div class="flex justify-between items-center px-8 py-6 w-full max-w-[1920px] mx-auto">
+        <a href="index.html" class="text-xl font-bold tracking-tighter text-black dark:text-white uppercase font-headline">AGÜERO</a>
+        <div class="hidden md:flex gap-12">
+            <a class="nav-link active" href="index.html">Inicio</a>
+            <a class="nav-link" href="proyectos.html">Proyectos</a>
+            <a class="nav-link" href="servicios.html">Servicios</a>
+            <a class="nav-link" href="nosotros.html">Sobre Nosotros</a>
+            <a class="nav-link" href="contacto.html">Contacto</a>
+        </div>
+        <button class="md:hidden">
+            <span class="material-symbols-outlined text-black dark:text-white">menu</span>
+        </button>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero Section -->
+    <section class="relative h-screen w-full overflow-hidden bg-black flex items-end">
+        <img alt="Minimalist architectural concrete structure" 
+             class="absolute inset-0 w-full h-full object-cover opacity-60 grayscale transition-transform duration-[2000ms] hover:scale-105" 
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1fhh78p1diPIYM-0cNrprsKxpsqMSq8IuR3KxpcPImHEpJhMQIdIyWaAgFob2Vwl9NjsPGM0mZYEk2ixrlrynp5LAFNpstL5_oxBxQT0Y70gqn4aQc8Ylnh1T-F-A-Q3BcyvO6fz5A6RpZ7a4OS4OScDqOpb4Lr0EFzTpf7m6tEm7o_0e2Prw-WtJHV0ndINE0kGbh8usfjy4nHVmHYzh1V9d3RB1hI30D2xh-eRfUwiyrpBR9uILopTGyxEL5ie7KMuNMJegGJYI"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
+        <div class="relative z-10 w-full px-8 pb-16 md:pb-24 max-w-[1920px] mx-auto opacity-0 animate-fade-in-up">
+            <div class="max-w-4xl">
+                <h1 class="text-5xl md:text-8xl font-extrabold tracking-tighter text-white leading-[0.9] mb-8 font-headline">
+                    BIENVENIDO A <br/> AGÜERO ARCHITECTS
+                </h1>
+                <p class="text-lg md:text-xl text-white/80 font-light max-w-xl tracking-wide uppercase font-body leading-relaxed">
+                    Arquitectura que redefine el espacio a través de la esencia estructural.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute right-8 bottom-16 md:bottom-24 flex flex-col items-center gap-4 text-white animate-pulse">
+            <span class="font-manrope text-[10px] uppercase tracking-[0.3em] rotate-90 origin-right translate-y-[-20px]">Scroll</span>
+            <div class="w-[1px] h-20 bg-white/30"></div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section class="py-32 md:py-48 px-8 bg-surface">
+        <div class="max-w-[1920px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-24 items-start">
+            <div class="lg:col-span-5 relative group">
+                <span class="font-manrope text-xs font-bold tracking-[0.2em] uppercase text-on-surface-variant block mb-8">Nuestra Filosofía</span>
+                <h2 class="text-4xl md:text-6xl font-bold tracking-tighter leading-tight text-primary font-headline">
+                    EL SILENCIO COMO <br/> MATERIA PRIMA.
+                </h2>
+            </div>
+            <div class="lg:col-span-6 lg:col-start-7 pt-4">
+                <p class="text-xl md:text-2xl text-on-surface-variant leading-relaxed font-light mb-12" style="font-family: 'Inter', sans-serif;">
+                    Creemos en una arquitectura despojada de lo innecesario. Cada línea, cada sombra y cada textura responde a una búsqueda honesta de la permanencia y el equilibrio. No construimos edificios, esculpimos vacíos habitables.
+                </p>
+                <a class="inline-flex items-center gap-4 text-primary font-bold uppercase tracking-widest text-xs group hover:text-black transition-colors" href="nosotros.html">
+                    <span class="font-headline">CONOCE NUESTRO ESTUDIO</span>
+                    <span class="w-12 h-[1px] bg-primary group-hover:w-24 transition-all duration-300"></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Impact Split -->
+    <section class="w-full h-[819px] grid grid-cols-1 md:grid-cols-2">
+        <div class="relative bg-surface-container-low overflow-hidden group">
+            <img class="w-full h-full object-cover grayscale transition-all duration-[1500ms] group-hover:scale-110" 
+                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuClmsDbAOXP2jbIrOmB7b3DH0chduw762aGsYiUWPkkvP4m7kgOjzdo6f3R9EsVbSJw6k0iHpaJU5x4Z7N5zr5L51fKHSQxuYIiPm7zsANOXuV-ofg0EATl26ag4emL7oZRrijY-4Bu1RN4ufYMwRJ4X8sIgUGZla0Ghebc9WxNAGzYQanQdweCyhdcjOH6VX28Qw95G76iFn67P2ZHxvgaBC4wQfjZ6nxcWs6vcfAa30I0_0uuZ0p9jbNLBTSkKnVhwFOToDDkblUs"/>
+            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-all duration-700"></div>
+        </div>
+        <div class="relative bg-black flex flex-col justify-center p-12 md:p-24 overflow-hidden group hover:bg-[#0a0a0a] transition-colors duration-500">
+            <h3 class="text-white text-3xl md:text-5xl font-bold tracking-tighter mb-8 z-10 font-headline group-hover:text-gray-200 transition-colors">FORMA Y <br/> FUNCIÓN.</h3>
+            <p class="text-white/60 max-w-sm mb-12 z-10 leading-relaxed uppercase text-xs tracking-widest">
+                La luz natural es nuestro principal material de construcción, transformando la rigidez del hormigón en una experiencia sensorial dinámica.
+            </p>
+            <div class="absolute bottom-[-10%] right-[-10%] w-64 h-64 border-[1px] border-white/5 opacity-30 rotate-45 group-hover:rotate-90 transition-transform duration-[2000ms]"></div>
+        </div>
+    </section>
+
+    <!-- Featured Projects (Custom Architectural Index) -->
+    <section class="py-32 md:py-48 px-8 bg-surface">
+        <div class="max-w-[1920px] mx-auto">
+            <div class="flex justify-between items-end mb-16 md:mb-24">
+                <div>
+                    <span class="font-manrope text-xs font-bold tracking-[0.2em] uppercase text-on-surface-variant block mb-4">Portafolio</span>
+                    <h2 class="text-4xl md:text-6xl font-bold tracking-tighter text-primary uppercase font-headline">PROYECTOS DESTACADOS</h2>
+                </div>
+                <div class="hidden md:block">
+                    <span class="text-xs uppercase tracking-widest text-on-surface-variant">Índice 2020 — 2024</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col border-t border-outline-variant/30">
+                <!-- Project Item 1 -->
+                <a class="project-item" href="proyectos.html">
+                    <div class="flex items-center gap-8 md:gap-16 z-10">
+                        <span class="text-xs font-manrope text-on-surface-variant/50">01</span>
+                        <h3 class="text-3xl md:text-6xl font-bold tracking-tighter uppercase font-headline">Vivienda GM</h3>
+                    </div>
+                    <div class="flex items-center gap-12 z-10">
+                        <span class="hidden md:block text-xs uppercase tracking-[0.2em] font-medium text-on-surface-variant">Residencial / 2023</span>
+                        <span class="material-symbols-outlined text-4xl project-arrow">north_east</span>
+                    </div>
+                    <!-- Hover Image -->
+                    <div class="project-hover-img">
+                        <img class="w-full h-full object-cover grayscale brightness-75 mix-blend-multiply" 
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuCTe_6Z5J9LmbrrUcRcoB9rTbMLQDTBSUg4Jdyg7b3tjea1AdpO6nkuFGvmR4fzD7oZtrGC8nkVTunsIIZvYqsKV6g76z0IOzkY9a0MByePvPOwKNoyR_N9298CU03SkkO1IdH_rLuK8PfCI-ul0w1SSbw_Fdc_42t-N0mkfnkAJLLUealglOJnKN8d128Hy5HzW6YStb_jEKqANiyUFUANCTDR54v_NFd2RgFSC6xD9poSvM-EzTfsUwNLuQW8wsA78w7VlSBaGJ0o"/>
+                    </div>
+                </a>
+
+                <!-- Project Item 2 -->
+                <a class="project-item" href="proyectos.html">
+                    <div class="flex items-center gap-8 md:gap-16 z-10">
+                        <span class="text-xs font-manrope text-on-surface-variant/50">02</span>
+                        <h3 class="text-3xl md:text-6xl font-bold tracking-tighter uppercase font-headline">Vivienda RT</h3>
+                    </div>
+                    <div class="flex items-center gap-12 z-10">
+                        <span class="hidden md:block text-xs uppercase tracking-[0.2em] font-medium text-on-surface-variant">Laboral / 2022</span>
+                        <span class="material-symbols-outlined text-4xl project-arrow">north_east</span>
+                    </div>
+                    <div class="project-hover-img">
+                        <img class="w-full h-full object-cover grayscale brightness-75 mix-blend-multiply" 
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW_4br0bYJtn4zs8X69MV1SVRVJnx0vY3iVkInQp1pOI5EKIeihoTB37zoaSbP4IHXQ6XJvE0bJe3jG1xH7PFSCtz_ZEI1CGv_q1_-KRkGA26wk_qdDjlWuH1BbnNyco2Bq00r_w7yNxX-pG_va4oPM7_-Ui3IjbppFGdhGlOpXrE68xkhG9l8HLX8bTxwWfaxBpIxZ0XdFe518NA0rUs3rW7qiHrvpMXcSIRBBlZICeWE4PFiIHwMkCjUhsZ8nYpO0rBInRodIt5h"/>
+                    </div>
+                </a>
+
+                <!-- Project Item 3 -->
+                <a class="project-item" href="proyectos.html">
+                    <div class="flex items-center gap-8 md:gap-16 z-10">
+                        <span class="text-xs font-manrope text-on-surface-variant/50">03</span>
+                        <h3 class="text-3xl md:text-6xl font-bold tracking-tighter uppercase font-headline">La Hacienda ILO</h3>
+                    </div>
+                    <div class="flex items-center gap-12 z-10">
+                        <span class="hidden md:block text-xs uppercase tracking-[0.2em] font-medium text-on-surface-variant">Público / 2021</span>
+                        <span class="material-symbols-outlined text-4xl project-arrow">north_east</span>
+                    </div>
+                    <div class="project-hover-img">
+                        <img class="w-full h-full object-cover grayscale brightness-75 mix-blend-multiply" 
+                             src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmbsXGPcEqTzWzdL2Pb32cvgceaksT1UqXT_IrzaALZL0iY7-bb8zCuFgY560QXgaHcohaFWvCBSh-QCdqQec0avMyDubv6fQfA6P7YTb3_tU-lqDUswqgQ16Y1iC7-n6gmBZK8ITPuILZDsKo0GIJJVpIi-sMIeEdbMg7qkAjGvq8gV8PYbSw88duOnNMH5DneXZmpYzBOjNbP4KjLvAK0h95aurve4kZ9HyM8U35FQfPTtphqMRV99gfiUzy7s0_CTYKw_TNDa9k"/>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Statement Section -->
+    <section class="py-32 px-8 bg-zinc-50 border-y border-zinc-100">
+        <div class="max-w-[1920px] mx-auto text-center">
+            <p class="text-sm tracking-[0.4em] uppercase text-on-surface-variant mb-12">Redefiniendo el Paisaje Urbano</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 h-[400px] md:h-[600px]">
+                <div class="bg-primary flex items-center justify-center p-8 group overflow-hidden">
+                    <img class="w-full h-full object-cover grayscale transition-transform duration-700 group-hover:scale-110 opacity-70" 
+                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbe-PMpvHH4rt-0PYoXcuvU8csO89MNDbCAZxUlkQ7y11gFiCnF8_u0gPv5KED5Qzcp8drYm6kJ7NkCTAdT4nwOanJKAP4W5K_w0iyNXksIIQkbfGKfmPBL8Q98ClezNXgMlwcivRQxyQomAZYP3AKpypip0eRpSCR70e4sswrbH1kpGg_VWRTSmPpNMZ4NU0fJobofcMJApf5wS3OH9yhQUdY8bqXJ5HXrqf1BjpVzHV5pXKzE6SfmuaXKVdIKhIZXDS2w5RVhm-f"/>
+                </div>
+                <div class="bg-surface-container-high flex flex-col justify-end p-8 text-left group hover:bg-[#d4d4d4] transition-colors duration-500">
+                    <span class="text-5xl font-bold tracking-tighter mb-2 font-headline group-hover:scale-105 transform origin-left transition-transform">15+</span>
+                    <span class="text-[10px] uppercase tracking-widest mt-2 font-black">Años de Excelencia</span>
+                </div>
+                <div class="md:col-span-2 bg-surface overflow-hidden group">
+                    <img class="w-full h-full object-cover grayscale brightness-[0.8] group-hover:brightness-100 transition-all duration-[2000ms] group-hover:scale-[1.02]" 
+                         src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4wRjkfBtTReU40wv9gHiAbHJKUaBecMoJBYUmxHnzZ2g6kR0PZmYAvFqeym1XsBsDTVE7DEyulxkqnHd4DfFNnOUMv9Yy0inftmaaJBXqllkBBr9H82HFHgTUxZb7j7HjyiwnmAf3Vfk8Ar3McJVSodyKQr93sUDdZKSf6GoXCOMCah1CPhWaqJJLP0erJUlopqzwguztwpqnH2YRYUGvqrBVzqHA8RHa2YsXJGBuiQPiPL_HWwrEI6h0ZJ5pHvAYCV8O7MM8jUHt"/>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-48 px-8 bg-surface">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-7xl font-bold tracking-tighter text-primary mb-12 font-headline uppercase">¿LISTO PARA <br/> TRANSFORMAR SU ESPACIO?</h2>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                <a href="contacto.html" class="inline-block text-center w-full md:w-auto px-12 py-6 bg-primary text-on-primary font-manrope font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:bg-zinc-800 hover:translate-y-[-2px] hover:shadow-xl">
+                    INICIAR PROYECTO
+                </a>
+                <a href="contacto.html" class="inline-block text-center w-full md:w-auto px-12 py-6 bg-transparent border-b-2 border-primary text-primary font-manrope font-bold uppercase tracking-widest text-xs transition-all duration-300 hover:px-16 hover:bg-black/5">
+                    DESCARGAR PORTAFOLIO
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<script src="./footer.js"></script>
+</body>
+</html>

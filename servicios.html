@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>SERVICIOS | AGÜERO ARQUITECTOS</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./preloader.js"></script>
+    <script src="./tailwind.config.js"></script>
+    <link rel="stylesheet" href="./style.css"/>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300">
+    <div class="flex justify-between items-center px-8 py-6 w-full max-w-[1920px] mx-auto">
+        <a href="index.html" class="text-xl font-bold tracking-tighter text-black dark:text-white uppercase font-headline">AGÜERO</a>
+        <div class="hidden md:flex gap-12">
+            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="proyectos.html">Proyectos</a>
+            <a class="nav-link active" href="servicios.html">Servicios</a>
+            <a class="nav-link" href="nosotros.html">Sobre Nosotros</a>
+            <a class="nav-link" href="contacto.html">Contacto</a>
+        </div>
+        <button class="md:hidden">
+            <span class="material-symbols-outlined text-black dark:text-white">menu</span>
+        </button>
+    </div>
+</nav>
+
+<main class="pt-32">
+    <!-- Hero Section -->
+    <header class="px-8 mb-24 md:mb-40 pt-16">
+        <div class="max-w-[1920px] mx-auto opacity-0 animate-fade-in-up">
+            <h1 class="text-7xl md:text-[12rem] font-extrabold tracking-tighter leading-none text-black uppercase font-headline">
+                SERVICIOS
+            </h1>
+            <div class="mt-8 flex flex-col md:flex-row justify-between items-start gap-8">
+                <p class="max-w-2xl text-lg md:text-xl text-on-surface-variant font-light leading-relaxed font-body">
+                    Transformamos visiones en realidades estructurales a través de un enfoque monolítico y una precisión técnica rigurosa. Cada proyecto es una exploración del espacio, la luz y la permanencia.
+                </p>
+                <div class="flex items-center gap-4 group cursor-pointer">
+                    <span class="text-xs font-bold uppercase tracking-widest border-b-2 border-black pb-1 font-headline">Descubrir Proceso</span>
+                    <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform duration-300">arrow_forward</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Grid -->
+    <section class="w-full max-w-[1240px] mx-auto px-8 py-24 mb-16 grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        <!-- Card 1: Diseño de Interiores -->
+        <div class="group flex flex-col border border-black/10 hover:shadow-2xl transition-all duration-500 bg-white shadow-sm overflow-hidden animate-on-scroll">
+            <!-- Image -->
+            <div class="w-full aspect-[4/3] overflow-hidden">
+                <img alt="Diseño de Interiores" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105" 
+                     src="https://static.wixstatic.com/media/7fba3905ea184ee29642cf0def056821.jpg"/>
+            </div>
+            <!-- Content -->
+            <div class="px-10 py-16 flex flex-col flex-grow items-start text-left">
+                <h2 class="text-[28px] font-headline font-light tracking-tight text-black mb-8">Diseño de Interiores</h2>
+                
+                <div class="w-full h-[1px] bg-black/10 mb-8 max-w-full"></div>
+                
+                <div class="flex flex-col gap-5 text-black font-body font-light text-[15px] mb-12">
+                    <p>99 hr</p>
+                    <p>10 $ por m2</p>
+                </div>
+                
+                <div class="mt-auto w-full">
+                    <a href="contacto.html" class="inline-block bg-[#9cb0b3] hover:bg-black text-white px-10 py-[14px] font-body text-sm font-medium tracking-wide transition-colors duration-300">
+                        Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Proyecto de Arquitectura -->
+        <div class="group flex flex-col border border-black/10 hover:shadow-2xl transition-all duration-500 bg-white shadow-sm overflow-hidden animate-on-scroll" style="animation-delay: 0.1s;">
+            <!-- Image -->
+            <div class="w-full aspect-[4/3] overflow-hidden">
+                <img alt="Proyecto de Arquitectura" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-105" 
+                     src="https://static.wixstatic.com/media/2b074052bbd24b6385f01ef23168ab53.jpg"/>
+            </div>
+            <!-- Content -->
+            <div class="px-10 py-16 flex flex-col flex-grow items-start text-left">
+                <h2 class="text-[28px] font-headline font-light tracking-tight text-black mb-8 leading-tight">Proyecto de <br>Arquitectura</h2>
+                
+                <div class="w-full h-[1px] bg-black/10 mb-8 max-w-full"></div>
+                
+                <div class="flex flex-col gap-5 text-black font-body font-light text-[15px] mb-12">
+                    <p>99 hr</p>
+                    <p>6 $ por m2</p>
+                </div>
+                
+                <div class="mt-auto w-full">
+                    <a href="contacto.html" class="inline-block bg-[#9cb0b3] hover:bg-black text-white px-10 py-[14px] font-body text-sm font-medium tracking-wide transition-colors duration-300">
+                        Book Now
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Call to Action -->
+    <section class="px-8 py-32 md:py-48 text-center bg-black text-white">
+        <div class="max-w-4xl mx-auto">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] mb-8 block text-zinc-400 font-headline">Iniciar una colaboración</span>
+            <h2 class="text-5xl md:text-8xl font-black tracking-tighter mb-12 uppercase leading-none font-headline">Tu visión, nuestra estructura.</h2>
+            <a href="contacto.html" class="inline-block bg-white text-black px-12 py-5 font-headline uppercase text-sm tracking-widest font-bold hover:bg-zinc-200 hover:scale-105 transition-all duration-300 shadow-xl shadow-white/10">
+                Contactar Estudio
+            </a>>
+        </div>
+    </section>
+</main>
+
+<script src="./footer.js"></script>
+
+</body>
+</html>
