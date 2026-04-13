@@ -65,17 +65,25 @@ document.addEventListener('DOMContentLoaded', () => {
         const ringEl = document.createElement('div');
         ringEl.id = 'cursor-ring';
         ringEl.innerHTML = `
-        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-            <polyline points="0,13 0,0 13,0"    stroke="#E8B84B" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
-            <polyline points="31,0 44,0 44,13"   stroke="#E8B84B" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
-            <polyline points="0,31 0,44 13,44"   stroke="#E8B84B" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
-            <polyline points="31,44 44,44 44,31" stroke="#E8B84B" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
-            <circle cx="22" cy="22" r="2" fill="#E8B84B"/>
+        <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Crosshair lines -->
+            <line x1="26" y1="0"  x2="26" y2="8"  stroke="#E8B84B" stroke-width="1"/>
+            <line x1="26" y1="44" x2="26" y2="52" stroke="#E8B84B" stroke-width="1"/>
+            <line x1="0"  y1="26" x2="8"  y2="26" stroke="#E8B84B" stroke-width="1"/>
+            <line x1="44" y1="26" x2="52" y2="26" stroke="#E8B84B" stroke-width="1"/>
+            <!-- Outer circle -->
+            <circle cx="26" cy="26" r="18" stroke="#E8B84B" stroke-width="1.4" fill="none"/>
+            <!-- North arrow: filled left half -->
+            <polygon points="26,6 20,32 26,27" fill="#E8B84B"/>
+            <!-- North arrow: outlined right half -->
+            <polygon points="26,6 32,32 26,27" stroke="#E8B84B" stroke-width="1.2" fill="none"/>
+            <!-- N label -->
+            <text x="26" y="43" text-anchor="middle" font-family="Georgia,serif" font-size="8" font-weight="bold" fill="#E8B84B">N</text>
         </svg>`;
         html.appendChild(ringEl);
 
         const DOT_HALF  = 3;
-        const RING_HALF = 22;
+        const RING_HALF = 26;
         let mx = window.innerWidth / 2, my = window.innerHeight / 2;
         let rx = mx, ry = my;
         let rScale = 1, targetScale = 1;
