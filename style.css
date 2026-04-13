@@ -5,51 +5,180 @@
 .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
 }
+body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+html { overflow-x: hidden; }
+h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
 
-body { 
-    font-family: 'Inter', sans-serif; 
-}
-h1, h2, h3, h4, h5, h6, .font-headline { 
-    font-family: 'Manrope', sans-serif; 
-}
+/* ── Scrollbar ─────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #fdf8f8; }
+::-webkit-scrollbar-thumb { background: #1c1b1b; }
 
-/* Scrollbar customization */
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: #fdf8f8;
-}
-::-webkit-scrollbar-thumb {
-    background: #1c1b1b;
+/* ══════════════════════════════════════════════════
+   CURSOR — brackets arquitectónicos
+══════════════════════════════════════════════════ */
+@media (hover: hover) and (pointer: fine) {
+    *, *::before, *::after { cursor: none !important; }
 }
 
-/* Nav Links Base */
+#cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #E8B84B;
+    pointer-events: none;
+    z-index: 2147483647;
+    box-shadow: 0 0 10px 3px rgba(232,184,75,0.8);
+}
+
+#cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    pointer-events: none;
+    z-index: 2147483646;
+}
+
+/* Trail dots */
+.cursor-trail {
+    position: fixed;
+    top: 0; left: 0;
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #E8B84B;
+    pointer-events: none;
+    z-index: 999990;
+    will-change: transform;
+    opacity: 0;
+}
+
+/* Restaurar en móvil */
+@media (hover: none), (pointer: coarse) {
+    * { cursor: auto !important; }
+    a, button { cursor: pointer !important; }
+    #cursor-dot, #cursor-ring, .cursor-trail { display: none !important; }
+}
+
+/* ── Nav Links ───────────────────────────────────── */
 .nav-link {
     @apply font-manrope tracking-[0.05em] uppercase text-xs font-medium text-zinc-500 dark:text-zinc-400 hover:text-black dark:hover:text-white transition-colors duration-300;
 }
 .nav-link.active {
-    @apply text-black dark:text-white border-b-2 border-black dark:border-white pb-1 transition-all;
+    @apply text-black dark:text-white border-b-2 border-black dark:border-white pb-1;
 }
 
-/* Universal Page transitions */
+/* ── Page transition ─────────────────────────────── */
 .page-transition {
-    animation: fadeIn 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+    animation: pgFadeIn 0.6s cubic-bezier(0.2, 1, 0.3, 1) forwards;
 }
 
-/* Custom Component Defaults */
+/* ── Project items ───────────────────────────────── */
 .project-item {
-    @apply group relative flex justify-between items-center py-10 md:py-16 border-b border-outline-variant/30 hover:px-8 transition-all duration-500 overflow-hidden;
+    @apply group relative flex justify-between items-center py-8 md:py-16 border-b border-outline-variant/30 md:hover:px-8 transition-all duration-500 overflow-hidden;
 }
-
 .project-item .project-arrow {
     @apply opacity-50 group-hover:opacity-100 group-hover:translate-x-2 transition-all duration-300;
 }
-
 .project-item:hover h3 {
-    @apply transform translate-x-4;
+    transform: translateX(1rem);
+    transition: transform 0.5s cubic-bezier(0.2,1,0.3,1);
 }
-
 .project-hover-img {
     @apply absolute right-[20%] top-1/2 -translate-y-1/2 w-0 group-hover:w-80 h-48 opacity-0 group-hover:opacity-100 transition-all duration-700 pointer-events-none overflow-hidden z-0;
+}
+
+/* ── Scroll progress bar ─────────────────────────── */
+#scroll-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    width: 0%;
+    background: linear-gradient(90deg, #E8B84B, #f0d080);
+    z-index: 99998;
+    pointer-events: none;
+    transition: width 0.05s linear;
+}
+
+/* ── Marquee ─────────────────────────────────────── */
+.marquee-wrap { overflow: hidden; }
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 22s linear infinite;
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+
+/* ── Nav shrink ──────────────────────────────────── */
+nav.scrolled {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+    box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+}
+
+/* ── Grain overlay ───────────────────────────────── */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9997;
+    opacity: 0.022;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+}
+
+/* ── Image reveal ────────────────────────────────── */
+.img-reveal { overflow: hidden; }
+.img-reveal img { transition: transform 2s cubic-bezier(0.2,1,0.3,1); }
+.img-reveal:hover img { transform: scale(1.04); }
+
+/* ── Keyframes ───────────────────────────────────── */
+@keyframes pgFadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@keyframes titleReveal {
+    from { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(8px); }
+    to   { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+@keyframes bodyFade {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+@keyframes glowPulse {
+    0%, 100% { box-shadow: 0 0 10px 3px rgba(232,184,75,0.8); }
+    50%       { box-shadow: 0 0 18px 6px rgba(232,184,75,1); }
+}
+
+.animate-title-reveal { animation: titleReveal 1.2s cubic-bezier(0.2,0.8,0.2,1) forwards; }
+.animate-body-fade    { animation: bodyFade 1.5s cubic-bezier(0.25,0.46,0.45,0.94) forwards; }
+
+/* ── Mobile-specific ─────────────────────────────── */
+@media (max-width: 767px) {
+    /* Hide hover images on touch screens */
+    .project-hover-img { display: none !important; }
+
+    /* Nav mobile menu: full width overlay */
+    nav .hidden.md\:flex.flex-col {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(255,255,255,0.97);
+        padding: 1.5rem 2rem;
+        gap: 1.25rem;
+        box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+        border-top: 1px solid rgba(0,0,0,0.06);
+    }
+
+    /* Ensure images always fill containers */
+    .img-reveal img { min-height: 100%; }
+
+    /* Prevent large text overflow */
+    h1, h2 { word-break: break-word; }
 }

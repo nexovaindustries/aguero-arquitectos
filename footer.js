@@ -1,100 +1,381 @@
+// ══ AGÜERO ARCHITECTS — Global Engine ════════════════════════════
+
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Inject Global Footer
-    const footerHTML = `
-    <footer class="w-full border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 mt-auto transition-colors duration-300">
-        <div class="flex flex-col md:flex-row justify-between items-center px-8 py-12 w-full gap-6 max-w-[1920px] mx-auto">
-            <div class="text-lg font-black text-black dark:text-white uppercase tracking-tighter font-headline">AGÜERO ARCHITECTS</div>
-            <div class="flex gap-8">
+
+    // ══════════════════════════════════════════════════════════════
+    // 1. FOOTER
+    // ══════════════════════════════════════════════════════════════
+    const footerEl = document.createElement('footer');
+    footerEl.style.cssText = 'width:100%;border-top:1px solid #e4e4e7;background:#fafafa;margin-top:auto;';
+    footerEl.innerHTML = `
+        <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
+                    padding:3rem 2rem;gap:1.5rem;max-width:1920px;margin:0 auto;">
+            <div style="font-size:1.1rem;font-weight:900;text-transform:uppercase;
+                        letter-spacing:-0.03em;font-family:'Manrope',sans-serif;">AGÜERO ARCHITECTS</div>
+            <div style="display:flex;gap:2rem;">
                 <a href="https://www.instagram.com/agueroarchitects/?hl=es-la" target="_blank" class="nav-link">Instagram</a>
-                <a href="https://www.facebook.com/AgueroArquitectos" target="_blank" class="nav-link">Facebook</a>
+                <a href="https://www.facebook.com/AgueroArquitectos"           target="_blank" class="nav-link">Facebook</a>
                 <a href="#" class="nav-link">Privacidad</a>
             </div>
-            <div class="font-manrope tracking-[0.05em] uppercase text-[10px] text-zinc-400 dark:text-zinc-600">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;
+                        color:#a1a1aa;font-family:'Manrope',sans-serif;">
                 © ${new Date().getFullYear()} AGÜERO ARCHITECTS. ALL RIGHTS RESERVED.
             </div>
-        </div>
-    </footer>
-    `;
-    
-    // Create a wrapper for footer if it doesn't exist, else append just before closing body
-    const footerContainer = document.createElement('div');
-    footerContainer.innerHTML = footerHTML;
-    document.body.appendChild(footerContainer.firstElementChild);
+        </div>`;
+    document.body.appendChild(footerEl);
 
-    // 2. Intersection Observer for fade-in animations on scroll
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
+    // ══════════════════════════════════════════════════════════════
+    // 2. SCROLL PROGRESS BAR
+    // ══════════════════════════════════════════════════════════════
+    const bar = document.createElement('div');
+    bar.id = 'scroll-bar';
+    document.body.appendChild(bar);
+    window.addEventListener('scroll', () => {
+        const pct = window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100;
+        bar.style.width = Math.min(pct, 100) + '%';
+    }, { passive: true });
 
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Apply a distinct elegant animation for titles vs bodies
-                const isTitle = entry.target.tagName.match(/^H[1-6]$/i) || !!entry.target.querySelector('h1, h2, h3, h4, h5, h6') || entry.target.classList.contains('font-headline');
-                
-                if (isTitle) {
-                    entry.target.classList.add('animate-title-reveal');
-                } else {
-                    entry.target.classList.add('animate-body-fade');
-                }
-                
-                entry.target.classList.remove('opacity-0', 'animate-on-scroll');
-                observer.unobserve(entry.target);
-            }
+    // ══════════════════════════════════════════════════════════════
+    // 3. CURSOR — BULLETPROOF
+    //
+    //  CAUSA DEL BUG ANTERIOR:
+    //    body.classList.add('page-transition') aplicaba la animación
+    //    CSS "pgFadeIn" que tenía transform:translateY() en body.
+    //    Con fill-mode "forwards", body PERMANECÍA con transform:translateY(0)
+    //    → todos los hijos position:fixed se posicionaban relativo al body
+    //    (no al viewport) → el cursor "se iba" al hacer scroll.
+    //
+    //  FIX DEFINITIVO:
+    //    1. pgFadeIn ya no usa transform (solo opacity) — ver style.css
+    //    2. Los elementos del cursor se adjuntan al <html>, NO al <body>.
+    //       Así ningún transform en body puede afectarlos jamás.
+    //    3. Sin will-change en los elementos del cursor.
+    // ══════════════════════════════════════════════════════════════
+    const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+    if (!isTouch) {
+        const html = document.documentElement; // ← ADJUNTAR A <HTML>, NO A <BODY>
+
+        // Dot
+        const dotEl = document.createElement('div');
+        dotEl.id = 'cursor-dot';
+        html.appendChild(dotEl);
+
+        // Ring con corchetes arquitectónicos
+        const ringEl = document.createElement('div');
+        ringEl.id = 'cursor-ring';
+        ringEl.innerHTML = `
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+            <polyline points="0,13 0,0 13,0"    stroke="#E8B84B" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+            <polyline points="31,0 44,0 44,13"   stroke="#E8B84B" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+            <polyline points="0,31 0,44 13,44"   stroke="#E8B84B" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+            <polyline points="31,44 44,44 44,31" stroke="#E8B84B" stroke-width="2.2" stroke-linejoin="round" fill="none"/>
+            <circle cx="22" cy="22" r="2" fill="#E8B84B"/>
+        </svg>`;
+        html.appendChild(ringEl);
+
+        const DOT_HALF  = 3;
+        const RING_HALF = 22;
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+        let rx = mx, ry = my;
+        let rScale = 1, targetScale = 1;
+        let dotSize = 6, targetDotSize = 6;
+
+        // Dot: movimiento inmediato (sin lag)
+        window.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+            dotEl.style.transform = `translate(${mx - DOT_HALF}px,${my - DOT_HALF}px)`;
+        }, { passive: true });
+
+        // Ring + scale: lerp suavizado vía RAF continuo
+        (function tick() {
+            rx     += (mx          - rx)     * 0.13;
+            ry     += (my          - ry)     * 0.13;
+            rScale += (targetScale - rScale) * 0.10;
+            dotSize+= (targetDotSize - dotSize) * 0.12;
+            ringEl.style.transform =
+                `translate(${rx - RING_HALF}px,${ry - RING_HALF}px) scale(${rScale})`;
+            // Ajustar tamaño del dot sin mover su posición
+            const half = dotSize / 2;
+            dotEl.style.width  = dotSize + 'px';
+            dotEl.style.height = dotSize + 'px';
+            dotEl.style.transform = `translate(${mx - half}px,${my - half}px)`;
+            requestAnimationFrame(tick);
+        })();
+
+        // Hover en links / botones → ring crece, dot crece
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                targetScale   = 1.75;
+                targetDotSize = 10;
+                const svg = ringEl.querySelector('svg');
+                if (svg) svg.style.filter = 'drop-shadow(0 0 8px rgba(232,184,75,1))';
+            });
+            el.addEventListener('mouseleave', () => {
+                targetScale   = 1;
+                targetDotSize = 6;
+                const svg = ringEl.querySelector('svg');
+                if (svg) svg.style.filter = '';
+            });
         });
-    }, observerOptions);
 
-    // Select elements to animate on scroll (anything with 'animate-on-scroll' class or standard sections)
-    const animateElements = document.querySelectorAll('.animate-on-scroll, section:not(:first-child)');
-    animateElements.forEach(el => {
-        el.classList.add('opacity-0'); // ensure it's hidden initially before scroll
-        scrollObserver.observe(el);
-    });
-
-    // 3. Mobile Menu Toggle Logic
-    const menuBtn = document.querySelector('nav button');
-    const navLinks = document.querySelector('nav .hidden.md\\:flex'); // Escape the selector
-    
-    if (menuBtn && navLinks) {
-        menuBtn.addEventListener('click', () => {
-             navLinks.classList.toggle('hidden');
-             navLinks.classList.toggle('flex');
-             navLinks.classList.toggle('flex-col');
-             navLinks.classList.toggle('absolute');
-             navLinks.classList.toggle('top-full');
-             navLinks.classList.toggle('left-0');
-             navLinks.classList.toggle('w-full');
-             navLinks.classList.toggle('bg-white');
-             navLinks.classList.toggle('dark:bg-black');
-             navLinks.classList.toggle('p-8');
-             navLinks.classList.toggle('gap-6');
+        // Hover en imágenes → ring se contrae
+        document.querySelectorAll('img').forEach(el => {
+            el.addEventListener('mouseenter', () => { targetScale = 0.55; });
+            el.addEventListener('mouseleave', () => { targetScale = 1; });
         });
     }
 
-    // Add page transition class to body for smooth initial load
-    document.body.classList.add('page-transition');
+    // ══════════════════════════════════════════════════════════════
+    // 4. GSAP — ANIMACIONES Y EFECTOS
+    // ══════════════════════════════════════════════════════════════
+    if (typeof gsap === 'undefined') {
+        new IntersectionObserver((entries, obs) => {
+            entries.forEach(e => {
+                if (!e.isIntersecting) return;
+                e.target.classList.add('animate-body-fade');
+                e.target.classList.remove('opacity-0', 'animate-on-scroll');
+                obs.unobserve(e.target);
+            });
+        }, { threshold: 0.1 }).observe(
+            ...document.querySelectorAll('.animate-on-scroll')
+        );
+        return;
+    }
 
-    // Fast Cross-page simple transition
-    const internalLinks = document.querySelectorAll('a[href]:not([target="_blank"])');
-    internalLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            const target = e.currentTarget.getAttribute('href');
-            
-            if (target && !target.startsWith('#') && !target.startsWith('http')) {
-                e.preventDefault();
-                
-                // Add a swift slide + fade out effect before unmounting the old page
-                document.body.style.transition = 'opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 1, 0.3, 1)';
-                document.body.style.opacity = '0';
-                document.body.style.transform = 'translateY(-10px)';
-                
-                setTimeout(() => {
-                    window.location.href = target;
-                }, 300);
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── Entrada de página: SOLO opacidad — NUNCA transform en body
+    gsap.fromTo(document.body,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.55, ease: 'power2.out', clearProps: 'opacity' }
+    );
+
+    // ── Nav shrink al hacer scroll
+    const nav = document.querySelector('nav');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
+    }
+
+    // ── Parallax hero image
+    const heroImg = document.querySelector('.h-screen img.absolute, section:first-child img.absolute');
+    if (heroImg) {
+        gsap.to(heroImg, {
+            yPercent: 28, ease: 'none',
+            scrollTrigger: {
+                trigger: heroImg.closest('section'),
+                start: 'top top', end: 'bottom top', scrub: 2
+            }
+        });
+    }
+
+    // ── Parallax imágenes internas (no hero)
+    document.querySelectorAll('section .relative img:not(.absolute)').forEach(img => {
+        gsap.to(img, {
+            y: -35, ease: 'none',
+            scrollTrigger: {
+                trigger: img.closest('section'),
+                start: 'top bottom', end: 'bottom top', scrub: 1.5
             }
         });
     });
-});
 
+    // ── h1 reveal
+    document.querySelectorAll('h1').forEach(el => {
+        if (el.closest('[style*="animation"]') || el.closest('.animate-fade-in-up')) return;
+        gsap.fromTo(el,
+            { yPercent: 100, opacity: 0, skewY: 3 },
+            { yPercent: 0, opacity: 1, skewY: 0, duration: 1.3, ease: 'power4.out',
+              scrollTrigger: { trigger: el, start: 'top 92%', once: true } }
+        );
+    });
+
+    // ── h2 / h3 slide
+    document.querySelectorAll('h2, h3').forEach(el => {
+        gsap.fromTo(el,
+            { y: 50, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.05, ease: 'power3.out',
+              scrollTrigger: { trigger: el, start: 'top 88%', once: true } }
+        );
+    });
+
+    // ── Imágenes: clip-path + scale reveal (desktop only — avoid clipping on mobile)
+    const isMobile = window.innerWidth < 768;
+    if (!isMobile) {
+        document.querySelectorAll('.overflow-hidden').forEach(wrap => {
+            if (wrap.closest('.project-hover-img, nav, #arch-preloader')) return;
+            const img = wrap.querySelector('img');
+            if (!img) return;
+            gsap.fromTo(wrap,
+                { clipPath: 'inset(14% 6% 14% 6%)' },
+                { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.5, ease: 'power3.out',
+                  scrollTrigger: { trigger: wrap, start: 'top 87%', once: true } }
+            );
+            gsap.fromTo(img,
+                { scale: 1.14, opacity: 0.5 },
+                { scale: 1, opacity: 1, duration: 2.1, ease: 'power3.out',
+                  scrollTrigger: { trigger: wrap, start: 'top 87%', once: true } }
+            );
+        });
+    }
+
+    // ── Párrafos
+    document.querySelectorAll('p').forEach(el => {
+        if (el.closest('.animate-fade-in-up, .animate-on-scroll')) return;
+        gsap.fromTo(el,
+            { y: 22, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.9, ease: 'power2.out',
+              scrollTrigger: { trigger: el, start: 'top 93%', once: true } }
+        );
+    });
+
+    // ── Project items
+    const projectItems = document.querySelectorAll('.project-item');
+    if (projectItems.length) {
+        gsap.fromTo(projectItems,
+            { x: -50, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.9, ease: 'power2.out', stagger: 0.08,
+              scrollTrigger: { trigger: projectItems[0], start: 'top 88%', once: true } }
+        );
+    }
+
+    // ── Letter-spacing hover en project items
+    projectItems.forEach(item => {
+        const h = item.querySelector('h3');
+        if (!h) return;
+        item.addEventListener('mouseenter', () =>
+            gsap.to(h, { letterSpacing: '0.05em', duration: 0.4, ease: 'power2.out' })
+        );
+        item.addEventListener('mouseleave', () =>
+            gsap.to(h, { letterSpacing: '-0.05em', duration: 0.4, ease: 'power2.out' })
+        );
+    });
+
+    // ── Animate-on-scroll
+    document.querySelectorAll('.animate-on-scroll').forEach((el, i) => {
+        gsap.fromTo(el,
+            { y: 65, opacity: 0, scale: 0.97 },
+            { y: 0, opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out',
+              delay: (i % 3) * 0.13,
+              scrollTrigger: { trigger: el, start: 'top 85%', once: true } }
+        );
+    });
+
+    // ── Bento / valores
+    const bentoCells = document.querySelectorAll('.trigger-hover');
+    if (bentoCells.length) {
+        gsap.fromTo(bentoCells,
+            { y: 50, opacity: 0, scale: 0.93 },
+            { y: 0, opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out', stagger: 0.14,
+              scrollTrigger: { trigger: bentoCells[0], start: 'top 85%', once: true } }
+        );
+    }
+
+    // ── Índice de proyectos
+    document.querySelectorAll('.group.py-8').forEach((el, i) => {
+        gsap.fromTo(el,
+            { x: 55, opacity: 0 },
+            { x: 0, opacity: 1, duration: 0.8, ease: 'power2.out', delay: i * 0.07,
+              scrollTrigger: { trigger: el, start: 'top 90%', once: true } }
+        );
+    });
+
+    // ── Tilt 3D y botones magnéticos solo en desktop
+    if (!isMobile) {
+        document.querySelectorAll('[class*="col-span"] .overflow-hidden').forEach(card => {
+            const img = card.querySelector('img');
+            if (!img) return;
+            card.addEventListener('mousemove', e => {
+                const r = card.getBoundingClientRect();
+                const xP = (e.clientX - r.left) / r.width  - 0.5;
+                const yP = (e.clientY - r.top)  / r.height - 0.5;
+                gsap.to(card, { rotateY: xP * 9, rotateX: -yP * 9, transformPerspective: 700, duration: 0.35, ease: 'power2.out' });
+                gsap.to(img,  { x: xP * 7, y: yP * 7, duration: 0.35, ease: 'power2.out' });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.7, ease: 'power3.out' });
+                gsap.to(img,  { x: 0, y: 0, duration: 0.7, ease: 'power3.out' });
+            });
+        });
+
+        document.querySelectorAll('a.inline-block, a[class*="px-12"], button[type="submit"]').forEach(btn => {
+            btn.addEventListener('mousemove', e => {
+                const r = btn.getBoundingClientRect();
+                gsap.to(btn, {
+                    x: (e.clientX - r.left - r.width  / 2) * 0.27,
+                    y: (e.clientY - r.top  - r.height / 2) * 0.27,
+                    duration: 0.35, ease: 'power2.out'
+                });
+            });
+            btn.addEventListener('mouseleave', () =>
+                gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)' })
+            );
+        });
+    }
+
+    // ── Stats count-up
+    document.querySelectorAll('[data-count]').forEach(el => {
+        const target = +el.dataset.count;
+        const obj = { v: 0 };
+        gsap.to(obj, {
+            v: target, duration: 2.5, ease: 'power2.out',
+            onUpdate() { el.textContent = Math.round(obj.v); },
+            scrollTrigger: { trigger: el, start: 'top 85%', once: true }
+        });
+    });
+
+    // ── Marquee
+    document.querySelectorAll('.marquee-track').forEach(t => { t.innerHTML += t.innerHTML; });
+
+    // ══════════════════════════════════════════════════════════════
+    // 5. MOBILE MENU
+    // ══════════════════════════════════════════════════════════════
+    const menuBtn  = document.querySelector('nav button');
+    const navLinks = document.querySelector('nav .hidden.md\\:flex');
+    if (menuBtn && navLinks) {
+        let menuOpen = false;
+        menuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                navLinks.classList.remove('hidden');
+                navLinks.classList.add('flex','flex-col','absolute','top-full','left-0',
+                    'w-full','z-50');
+                menuBtn.querySelector('.material-symbols-outlined').textContent = 'close';
+            } else {
+                navLinks.classList.add('hidden');
+                navLinks.classList.remove('flex','flex-col','absolute','top-full','left-0',
+                    'w-full','z-50');
+                menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+            }
+        });
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                if (menuOpen) menuBtn.click();
+            });
+        });
+    }
+
+    // ══════════════════════════════════════════════════════════════
+    // 6. TRANSICIÓN DE PÁGINA — SOLO OPACIDAD
+    //    NUNCA usar transform/y en body (rompe position:fixed del cursor)
+    // ══════════════════════════════════════════════════════════════
+    document.body.classList.add('page-transition');
+
+    document.querySelectorAll('a[href]:not([target="_blank"])').forEach(link => {
+        link.addEventListener('click', e => {
+            const href = e.currentTarget.getAttribute('href');
+            if (href && !href.startsWith('#') && !href.startsWith('http')) {
+                e.preventDefault();
+                gsap.to(document.body, {
+                    opacity: 0, duration: 0.3, ease: 'power2.in',
+                    onComplete: () => { window.location.href = href; }
+                });
+            }
+        });
+    });
+
+});
