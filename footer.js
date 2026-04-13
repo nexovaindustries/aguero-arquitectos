@@ -67,18 +67,18 @@ document.addEventListener('DOMContentLoaded', () => {
         ringEl.innerHTML = `
         <svg width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
             <!-- Crosshair lines -->
-            <line x1="26" y1="0"  x2="26" y2="8"  stroke="#E8B84B" stroke-width="1"/>
-            <line x1="26" y1="44" x2="26" y2="52" stroke="#E8B84B" stroke-width="1"/>
-            <line x1="0"  y1="26" x2="8"  y2="26" stroke="#E8B84B" stroke-width="1"/>
-            <line x1="44" y1="26" x2="52" y2="26" stroke="#E8B84B" stroke-width="1"/>
+            <line x1="26" y1="0"  x2="26" y2="8"  stroke="#ffffff" stroke-width="1"/>
+            <line x1="26" y1="44" x2="26" y2="52" stroke="#ffffff" stroke-width="1"/>
+            <line x1="0"  y1="26" x2="8"  y2="26" stroke="#ffffff" stroke-width="1"/>
+            <line x1="44" y1="26" x2="52" y2="26" stroke="#ffffff" stroke-width="1"/>
             <!-- Outer circle -->
-            <circle cx="26" cy="26" r="18" stroke="#E8B84B" stroke-width="1.4" fill="none"/>
+            <circle cx="26" cy="26" r="18" stroke="#ffffff" stroke-width="1.4" fill="none"/>
             <!-- North arrow: filled left half -->
-            <polygon points="26,6 20,32 26,27" fill="#E8B84B"/>
+            <polygon points="26,6 20,32 26,27" fill="#ffffff"/>
             <!-- North arrow: outlined right half -->
-            <polygon points="26,6 32,32 26,27" stroke="#E8B84B" stroke-width="1.2" fill="none"/>
+            <polygon points="26,6 32,32 26,27" stroke="#ffffff" stroke-width="1.2" fill="none"/>
             <!-- N label -->
-            <text x="26" y="43" text-anchor="middle" font-family="Georgia,serif" font-size="8" font-weight="bold" fill="#E8B84B">N</text>
+            <text x="26" y="43" text-anchor="middle" font-family="Georgia,serif" font-size="8" font-weight="bold" fill="#ffffff">N</text>
         </svg>`;
         html.appendChild(ringEl);
 
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 targetScale   = 1.75;
                 targetDotSize = 10;
                 const svg = ringEl.querySelector('svg');
-                if (svg) svg.style.filter = 'drop-shadow(0 0 8px rgba(232,184,75,1))';
+                if (svg) svg.style.filter = 'drop-shadow(0 0 8px rgba(255,255,255,1))';
             });
             el.addEventListener('mouseleave', () => {
                 targetScale   = 1;

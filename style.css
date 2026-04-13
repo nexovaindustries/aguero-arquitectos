@@ -26,16 +26,16 @@ h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
     top: 0; left: 0;
     width: 6px; height: 6px;
     border-radius: 50%;
-    background: #E8B84B;
+    background: #ffffff;
     pointer-events: none;
     z-index: 2147483647;
-    box-shadow: 0 0 10px 3px rgba(232,184,75,0.8);
+    box-shadow: 0 0 10px 3px rgba(255,255,255,0.8);
 }
 
 #cursor-ring {
     position: fixed;
     top: 0; left: 0;
-    width: 44px; height: 44px;
+    width: 52px; height: 52px;
     pointer-events: none;
     z-index: 2147483646;
 }
@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
     top: 0; left: 0;
     width: 5px; height: 5px;
     border-radius: 50%;
-    background: #E8B84B;
+    background: #ffffff;
     pointer-events: none;
     z-index: 999990;
     will-change: transform;
@@ -151,8 +151,8 @@ body::after {
     to   { transform: translateX(-50%); }
 }
 @keyframes glowPulse {
-    0%, 100% { box-shadow: 0 0 10px 3px rgba(232,184,75,0.8); }
-    50%       { box-shadow: 0 0 18px 6px rgba(232,184,75,1); }
+    0%, 100% { box-shadow: 0 0 10px 3px rgba(255,255,255,0.8); }
+    50%       { box-shadow: 0 0 18px 6px rgba(255,255,255,1); }
 }
 
 .animate-title-reveal { animation: titleReveal 1.2s cubic-bezier(0.2,0.8,0.2,1) forwards; }
