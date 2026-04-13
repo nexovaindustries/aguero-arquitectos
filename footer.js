@@ -331,31 +331,168 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.marquee-track').forEach(t => { t.innerHTML += t.innerHTML; });
 
     // ══════════════════════════════════════════════════════════════
-    // 5. MOBILE MENU
+    // 5. MOBILE MENU — Full-screen slide-in overlay
     // ══════════════════════════════════════════════════════════════
-    const menuBtn  = document.querySelector('nav button');
-    const navLinks = document.querySelector('nav .hidden.md\\:flex');
-    if (menuBtn && navLinks) {
-        let menuOpen = false;
-        menuBtn.addEventListener('click', () => {
-            menuOpen = !menuOpen;
-            if (menuOpen) {
-                navLinks.classList.remove('hidden');
-                navLinks.classList.add('flex','flex-col','absolute','top-full','left-0',
-                    'w-full','z-50');
-                menuBtn.querySelector('.material-symbols-outlined').textContent = 'close';
-            } else {
-                navLinks.classList.add('hidden');
-                navLinks.classList.remove('flex','flex-col','absolute','top-full','left-0',
-                    'w-full','z-50');
-                menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+    const menuBtn = document.querySelector('nav button.md\\:hidden, nav button:not([class*="md:"])');
+    if (menuBtn) {
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+        // Build overlay
+        const overlay = document.createElement('div');
+        overlay.id = 'mobile-menu-overlay';
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.innerHTML = `
+            <div id="mobile-menu-inner">
+                <button id="mobile-menu-close" aria-label="Cerrar menú">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+                <nav id="mobile-menu-nav">
+                    <a href="index.html"      class="mob-link${currentPage === 'index.html'      ? ' mob-active' : ''}">Inicio</a>
+                    <a href="proyectos.html"  class="mob-link${currentPage === 'proyectos.html'  ? ' mob-active' : ''}">Proyectos</a>
+                    <a href="servicios.html"  class="mob-link${currentPage === 'servicios.html'  ? ' mob-active' : ''}">Servicios</a>
+                    <a href="nosotros.html"   class="mob-link${currentPage === 'nosotros.html'   ? ' mob-active' : ''}">Sobre Nosotros</a>
+                    <a href="contacto.html"   class="mob-link${currentPage === 'contacto.html'   ? ' mob-active' : ''}">Contacto</a>
+                </nav>
+                <div id="mobile-menu-socials">
+                    <a href="https://www.instagram.com/agueroarchitects/?hl=es-la" target="_blank">Instagram</a>
+                    <a href="https://www.facebook.com/AgueroArquitectos" target="_blank">Facebook</a>
+                </div>
+            </div>
+        `;
+
+        // Inject styles
+        const style = document.createElement('style');
+        style.textContent = `
+            #mobile-menu-overlay {
+                position: fixed;
+                inset: 0;
+                z-index: 9998;
+                background: #0a0a0a;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                transform: translateX(100%);
+                transition: transform 0.55s cubic-bezier(0.77,0,0.175,1);
+                pointer-events: none;
+                overflow: hidden;
             }
+            #mobile-menu-overlay.is-open {
+                transform: translateX(0);
+                pointer-events: auto;
+            }
+            #mobile-menu-inner {
+                padding: 2rem 2.5rem;
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                justify-content: center;
+                position: relative;
+            }
+            #mobile-menu-close {
+                position: absolute;
+                top: 1.5rem;
+                right: 1.5rem;
+                background: none;
+                border: none;
+                cursor: pointer;
+                padding: 0.5rem;
+                color: #fff;
+                line-height: 1;
+            }
+            #mobile-menu-close .material-symbols-outlined {
+                font-size: 2rem;
+            }
+            #mobile-menu-nav {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+            }
+            .mob-link {
+                display: block;
+                font-family: 'Manrope', sans-serif;
+                font-size: clamp(2.2rem, 9vw, 4.5rem);
+                font-weight: 900;
+                letter-spacing: -0.04em;
+                text-transform: uppercase;
+                color: rgba(255,255,255,0.75);
+                text-decoration: none;
+                padding: 0.6rem 0;
+                border-bottom: 1px solid rgba(255,255,255,0.07);
+                opacity: 0;
+                transform: translateX(50px);
+                transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
+            }
+            .mob-link:hover { color: #E8B84B; }
+            .mob-link.mob-active { color: #E8B84B; }
+            #mobile-menu-overlay.is-open .mob-link {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            #mobile-menu-overlay.is-open .mob-link:nth-child(1) { transition-delay: 0.12s; }
+            #mobile-menu-overlay.is-open .mob-link:nth-child(2) { transition-delay: 0.19s; }
+            #mobile-menu-overlay.is-open .mob-link:nth-child(3) { transition-delay: 0.26s; }
+            #mobile-menu-overlay.is-open .mob-link:nth-child(4) { transition-delay: 0.33s; }
+            #mobile-menu-overlay.is-open .mob-link:nth-child(5) { transition-delay: 0.40s; }
+            #mobile-menu-socials {
+                margin-top: 3rem;
+                display: flex;
+                gap: 2rem;
+            }
+            #mobile-menu-socials a {
+                font-family: 'Manrope', sans-serif;
+                font-size: 0.65rem;
+                letter-spacing: 0.22em;
+                text-transform: uppercase;
+                color: rgba(255,255,255,0.4);
+                text-decoration: none;
+                transition: color 0.2s;
+            }
+            #mobile-menu-socials a:hover { color: #E8B84B; }
+            /* Decorative corner */
+            #mobile-menu-overlay::before {
+                content: '';
+                position: absolute;
+                bottom: -8rem;
+                right: -8rem;
+                width: 22rem;
+                height: 22rem;
+                border: 1px solid rgba(232,184,75,0.08);
+                transform: rotate(45deg);
+                pointer-events: none;
+            }
+        `;
+        document.head.appendChild(style);
+        document.documentElement.appendChild(overlay);
+
+        let menuOpen = false;
+
+        function openMenu() {
+            menuOpen = true;
+            overlay.classList.add('is-open');
+            overlay.setAttribute('aria-hidden', 'false');
+            menuBtn.querySelector('.material-symbols-outlined').textContent = 'close';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            menuOpen = false;
+            overlay.classList.remove('is-open');
+            overlay.setAttribute('aria-hidden', 'true');
+            menuBtn.querySelector('.material-symbols-outlined').textContent = 'menu';
+            document.body.style.overflow = '';
+        }
+
+        menuBtn.addEventListener('click', () => menuOpen ? closeMenu() : openMenu());
+        document.getElementById('mobile-menu-close').addEventListener('click', closeMenu);
+
+        // Close on link click
+        overlay.querySelectorAll('.mob-link').forEach(a => {
+            a.addEventListener('click', closeMenu);
         });
-        // Close menu when a link is clicked
-        navLinks.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => {
-                if (menuOpen) menuBtn.click();
-            });
+
+        // Close on Escape key
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && menuOpen) closeMenu();
         });
     }
 
