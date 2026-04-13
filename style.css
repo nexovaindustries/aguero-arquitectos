@@ -30,6 +30,7 @@ h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
     pointer-events: none;
     z-index: 2147483647;
     box-shadow: 0 0 10px 3px rgba(255,255,255,0.8);
+    mix-blend-mode: difference;
 }
 
 #cursor-ring {
@@ -38,6 +39,7 @@ h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
     width: 52px; height: 52px;
     pointer-events: none;
     z-index: 2147483646;
+    mix-blend-mode: difference;
 }
 
 /* Trail dots */
