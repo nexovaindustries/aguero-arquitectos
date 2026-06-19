@@ -3,6 +3,8 @@ tailwind.config = {
     theme: {
         extend: {
             "colors": {
+                "accent": "#b85a3e",
+                "accent-hover": "#9e2a2b",
                 "on-primary-fixed-variant": "#474747",
                 "on-primary-fixed": "#1b1b1b",
                 "on-secondary": "#ffffff",

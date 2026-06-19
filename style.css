@@ -96,7 +96,7 @@ h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
     top: 0; left: 0;
     height: 2px;
     width: 0%;
-    background: linear-gradient(90deg, #E8B84B, #f0d080);
+    background: linear-gradient(90deg, #b85a3e, #d87e60);
     z-index: 99998;
     pointer-events: none;
     transition: width 0.05s linear;
@@ -184,3 +184,39 @@ body::after {
     /* Prevent large text overflow */
     h1, h2 { word-break: break-word; }
 }
+
+/* ── Hover/Active Color Transition ──────────────── */
+img {
+    transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1) !important;
+}
+
+img.grayscale {
+    will-change: filter;
+}
+
+/* Restores color on hover, active tap, or when class is active */
+img.grayscale.is-colored,
+img.grayscale:hover,
+img.grayscale:focus,
+img.grayscale:active,
+.group:hover img,
+.group:focus img,
+.group:active img,
+.img-reveal:hover img,
+.img-reveal:active img,
+.project-item:hover img,
+.project-item:active img {
+    filter: grayscale(0%) brightness(100%) !important;
+}
+
+/* Touch support: ensure tapping on mobile brings back colors */
+@media (hover: none) {
+    img:active,
+    .group:active img,
+    .img-reveal:active img,
+    .project-item:active img {
+        filter: grayscale(0%) brightness(100%) !important;
+    }
+}
+
+

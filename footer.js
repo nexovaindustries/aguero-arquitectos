@@ -160,6 +160,26 @@ document.addEventListener('DOMContentLoaded', () => {
         { opacity: 1, duration: 0.55, ease: 'power2.out', clearProps: 'opacity' }
     );
 
+    // ── Transición de color ligada al scroll (blanco y negro → color al bajar, vuelve al subir)
+    document.querySelectorAll('img.grayscale').forEach(img => {
+        gsap.fromTo(img,
+            { filter: 'grayscale(100%)' },
+            {
+                filter: 'grayscale(0%)',
+                ease: 'power1.in',
+                scrollTrigger: {
+                    trigger: img,
+                    start: 'top bottom',    // Entra a la pantalla desde abajo: B&N
+                    end: 'bottom top',      // Sale de la pantalla por arriba: color total
+                    scrub: true,
+                    invalidateOnRefresh: true
+                }
+            }
+        );
+    });
+
+
+
     // ── Nav shrink al hacer scroll
     const nav = document.querySelector('nav');
     if (nav) {
@@ -430,8 +450,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 transform: translateX(50px);
                 transition: opacity 0.4s ease, transform 0.4s ease, color 0.2s ease;
             }
-            .mob-link:hover { color: #E8B84B; }
-            .mob-link.mob-active { color: #E8B84B; }
+            .mob-link:hover { color: #b85a3e; }
+            .mob-link.mob-active { color: #b85a3e; }
             #mobile-menu-overlay.is-open .mob-link {
                 opacity: 1;
                 transform: translateX(0);
@@ -455,7 +475,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 text-decoration: none;
                 transition: color 0.2s;
             }
-            #mobile-menu-socials a:hover { color: #E8B84B; }
+            #mobile-menu-socials a:hover { color: #b85a3e; }
             /* Decorative corner */
             #mobile-menu-overlay::before {
                 content: '';
@@ -464,7 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 right: -8rem;
                 width: 22rem;
                 height: 22rem;
-                border: 1px solid rgba(232,184,75,0.08);
+                border: 1px solid rgba(184,90,62,0.08);
                 transform: rotate(45deg);
                 pointer-events: none;
             }
@@ -546,11 +566,11 @@ document.addEventListener('DOMContentLoaded', () => {
             box-shadow: 0 4px 24px rgba(0,0,0,0.35);
         }
         #wa-float-btn:hover {
-            background: #E8B84B;
-            border-color: #E8B84B;
-            color: #000;
+            background: #b85a3e;
+            border-color: #b85a3e;
+            color: #fff;
             transform: translateY(-3px);
-            box-shadow: 0 8px 32px rgba(232,184,75,0.35);
+            box-shadow: 0 8px 32px rgba(184,90,62,0.35);
         }
         #wa-float-btn #wa-icon {
             width: 1.1rem;
