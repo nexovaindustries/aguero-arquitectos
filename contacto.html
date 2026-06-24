@@ -79,15 +79,19 @@
 
         <!-- Right Column: Form -->
         <div class="w-full">
-            <form class="flex flex-col gap-8 w-full mt-2 lg:mt-0 relative group">
-                <input type="text" placeholder="Nombre" aria-label="Nombre" class="w-full bg-transparent border-0 border-b border-[#5e5e5e] text-white placeholder-gray-300 focus:ring-0 focus:border-white transition-colors px-0 py-2 font-inter text-[13px] tracking-wide" required>
-                
-                <input type="email" placeholder="Email" aria-label="Email" class="w-full bg-transparent border-0 border-b border-[#5e5e5e] text-white placeholder-gray-300 focus:ring-0 focus:border-white transition-colors px-0 py-2 font-inter text-[13px] tracking-wide" required>
-                
-                <input type="tel" placeholder="Teléfono" aria-label="Teléfono" class="w-full bg-transparent border-0 border-b border-[#5e5e5e] text-white placeholder-gray-300 focus:ring-0 focus:border-white transition-colors px-0 py-2 font-inter text-[13px] tracking-wide" required>
-                
-                <textarea placeholder="Escribe tu mensaje aquí..." aria-label="Mensaje" class="w-full bg-transparent border-0 border-b border-[#5e5e5e] text-white placeholder-gray-300 focus:ring-0 focus:border-white transition-colors px-0 py-2 min-h-[140px] resize-none font-inter text-[13px] tracking-wide mt-2" required></textarea>
-                
+            <form action="https://formsubmit.co/agueroarchitects@gmail.com" method="POST" class="flex flex-col gap-8 w-full mt-2 lg:mt-0 relative group">
+                <input type="hidden" name="_subject" value="Nuevo contacto desde Agüero Architects">
+                <input type="hidden" name="_next" value="https://nexovaindustries.github.io/aguero-arquitectos/contacto.html">
+                <input type="hidden" name="_captcha" value="false">
+
+                <input type="text" name="nombre" placeholder="Nombre" aria-label="Nombre" class="w-full bg-transparent border-0 border-b border-[#5e5e5e] text-white placeholder-gray-300 focus:ring-0 focus:border-white transition-colors px-0 py-2 font-inter text-[13px] tracking-wide" required>
+
+                <input type="email" name="email" placeholder="Email" aria-label="Email" class="w-full bg-transparent border-0 border-b border-[#5e5e5e] text-white placeholder-gray-300 focus:ring-0 focus:border-white transition-colors px-0 py-2 font-inter text-[13px] tracking-wide" required>
+
+                <input type="tel" name="telefono" placeholder="Teléfono" aria-label="Teléfono" class="w-full bg-transparent border-0 border-b border-[#5e5e5e] text-white placeholder-gray-300 focus:ring-0 focus:border-white transition-colors px-0 py-2 font-inter text-[13px] tracking-wide" required>
+
+                <textarea name="mensaje" placeholder="Escribe tu mensaje aquí..." aria-label="Mensaje" class="w-full bg-transparent border-0 border-b border-[#5e5e5e] text-white placeholder-gray-300 focus:ring-0 focus:border-white transition-colors px-0 py-2 min-h-[140px] resize-none font-inter text-[13px] tracking-wide mt-2" required></textarea>
+
                 <button type="submit" class="mt-8 bg-white text-black font-inter font-medium py-[14px] text-[13px] w-full hover:bg-gray-200 transition-colors uppercase tracking-wide">
                     Enviar
                 </button>
