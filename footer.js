@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div style="display:flex;gap:2rem;">
                 <a href="https://www.instagram.com/agueroarchitects/?hl=es-la" target="_blank" class="nav-link">Instagram</a>
                 <a href="https://www.facebook.com/AgueroArquitectos"           target="_blank" class="nav-link">Facebook</a>
+                <a href="https://www.tiktok.com/@agueroarchitects?_r=1&_t=ZS-97ga7UMUzuW" target="_blank" class="nav-link">TikTok</a>
                 <a href="#" class="nav-link">Privacidad</a>
             </div>
             <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.15em;
