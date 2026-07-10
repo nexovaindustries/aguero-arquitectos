@@ -40,32 +40,36 @@
 </nav>
 
 <main class="pt-32 pb-24 px-8 max-w-[1920px] mx-auto">
-    <!-- Hero Title -->
-    <header class="mb-24 pt-16">
-        <span class="font-manrope text-xs font-bold tracking-[0.2em] uppercase text-accent block mb-6">Prensa & Medios</span>
-        <h1 class="text-[clamp(2rem,10vw,7rem)] font-extrabold font-headline leading-[0.85] tracking-tighter uppercase animate-fade-in-up">
-            ENTREVISTAS Y<br/>RECONOCIMIENTOS
-        </h1>
-    </header>
 
-    <!-- Gallery -->
-    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 animate-on-scroll items-start">
-        <div class="bg-surface-container-low group">
+    <!-- Fila 1: Signature 1 + Título -->
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center mb-16 md:mb-24 animate-fade-in-up opacity-0" style="animation-fill-mode:forwards;">
+        <div class="group">
             <img src="./images/signature 1.png"
                  alt="Entrevista Signature 1 — Agüero Architects"
                  class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700"/>
         </div>
-        <div class="bg-surface-container-low group">
-            <img src="./images/signature 2.png"
-                 alt="Entrevista Signature 2 — Agüero Architects"
-                 class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700"/>
-        </div>
-        <div class="bg-surface-container-low group">
-            <img src="./images/signature 3.png"
-                 alt="Entrevista Signature 3 — Agüero Architects"
-                 class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700"/>
+        <div>
+            <span class="font-manrope text-xs font-bold tracking-[0.2em] uppercase text-accent block mb-6">Prensa & Medios</span>
+            <h1 class="text-[clamp(2.5rem,7vw,6rem)] font-extrabold font-headline leading-[0.9] tracking-tighter uppercase">
+                ENTREVISTAS Y RECONOCIMIENTOS
+            </h1>
         </div>
     </section>
+
+    <!-- Fila 2: Signature 2 grande -->
+    <section class="mb-8 md:mb-12 animate-on-scroll group">
+        <img src="./images/signature 2.png"
+             alt="Entrevista Signature 2 — Agüero Architects"
+             class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700"/>
+    </section>
+
+    <!-- Fila 3: Signature 3 -->
+    <section class="animate-on-scroll group">
+        <img src="./images/signature 3.png"
+             alt="Entrevista Signature 3 — Agüero Architects"
+             class="w-full h-auto grayscale group-hover:grayscale-0 transition-all duration-700"/>
+    </section>
+
 </main>
 
 <script src="./footer.js"></script>
