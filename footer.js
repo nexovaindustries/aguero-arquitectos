@@ -379,8 +379,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     <a href="index.html"      class="mob-link${currentPage === 'index.html'      ? ' mob-active' : ''}">Inicio</a>
                     <a href="proyectos.html"  class="mob-link${currentPage === 'proyectos.html'  ? ' mob-active' : ''}">Proyectos</a>
                     <a href="servicios.html"  class="mob-link${currentPage === 'servicios.html'  ? ' mob-active' : ''}">Servicios</a>
-                    <a href="nosotros.html"   class="mob-link${currentPage === 'nosotros.html'   ? ' mob-active' : ''}">Sobre Nosotros</a>
-                    <a href="contacto.html"   class="mob-link${currentPage === 'contacto.html'   ? ' mob-active' : ''}">Contacto</a>
+                    <a href="nosotros.html"    class="mob-link${currentPage === 'nosotros.html'    ? ' mob-active' : ''}">Sobre Nosotros</a>
+                    <a href="entrevistas.html" class="mob-link${currentPage === 'entrevistas.html' ? ' mob-active' : ''}">Entrevistas</a>
+                    <a href="contacto.html"    class="mob-link${currentPage === 'contacto.html'    ? ' mob-active' : ''}">Contacto</a>
                 </nav>
                 <div id="mobile-menu-socials">
                     <a href="https://www.instagram.com/agueroarchitects/?hl=es-la" target="_blank">Instagram</a>
