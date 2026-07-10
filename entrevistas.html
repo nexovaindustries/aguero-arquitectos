@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es" class="light">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ENTREVISTAS Y RECONOCIMIENTOS | AGÜERO ARQUITECTOS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script src="./preloader.js"></script>
+    <script src="./tailwind.config.js"></script>
+    <link rel="stylesheet" href="./style.css"/>
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary selection:text-on-primary">
+
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-black/80 backdrop-blur-xl border-b border-black/5 dark:border-white/5 transition-all duration-300">
+    <div class="flex justify-between items-center px-8 py-6 w-full max-w-[1920px] mx-auto">
+        <a href="index.html" class="text-xl font-bold tracking-tighter text-black dark:text-white uppercase font-headline">AGÜERO ARCHITECTS</a>
+        <div class="hidden md:flex gap-12">
+            <a class="nav-link" href="index.html">Inicio</a>
+            <a class="nav-link" href="proyectos.html">Proyectos</a>
+            <a class="nav-link" href="servicios.html">Servicios</a>
+            <a class="nav-link" href="nosotros.html">Sobre Nosotros</a>
+            <a class="nav-link active" href="entrevistas.html">Entrevistas</a>
+            <a class="nav-link" href="contacto.html">Contacto</a>
+        </div>
+        <button class="md:hidden">
+            <span class="material-symbols-outlined text-black dark:text-white">menu</span>
+        </button>
+    </div>
+</nav>
+
+<main class="pt-32 pb-24 px-8 max-w-[1920px] mx-auto">
+    <!-- Hero Title -->
+    <header class="mb-24 pt-16">
+        <span class="font-manrope text-xs font-bold tracking-[0.2em] uppercase text-accent block mb-6">Prensa & Medios</span>
+        <h1 class="text-[clamp(2rem,10vw,7rem)] font-extrabold font-headline leading-[0.85] tracking-tighter uppercase animate-fade-in-up">
+            ENTREVISTAS Y<br/>RECONOCIMIENTOS
+        </h1>
+    </header>
+
+    <!-- Gallery -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 animate-on-scroll">
+        <div class="overflow-hidden bg-surface-container-low group img-reveal">
+            <img src="./images/signature 1.png"
+                 alt="Entrevista Signature 1 — Agüero Architects"
+                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"/>
+        </div>
+        <div class="overflow-hidden bg-surface-container-low group img-reveal">
+            <img src="./images/signature 2.png"
+                 alt="Entrevista Signature 2 — Agüero Architects"
+                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"/>
+        </div>
+        <div class="overflow-hidden bg-surface-container-low group img-reveal">
+            <img src="./images/signature 3.png"
+                 alt="Entrevista Signature 3 — Agüero Architects"
+                 class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"/>
+        </div>
+    </section>
+</main>
+
+<script src="./footer.js"></script>
+</body>
+</html>
