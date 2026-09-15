@@ -9,10 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     footerEl.style.cssText = 'width:100%;border-top:1px solid #e4e4e7;background:#fafafa;margin-top:auto;';
     footerEl.innerHTML = `
         <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;
-                    padding:3rem 2rem;gap:1.5rem;max-width:1920px;margin:0 auto;">
+                    padding:3rem clamp(1.25rem, 5vw, 2rem);gap:1.5rem;max-width:1920px;margin:0 auto;">
             <div style="font-size:1.1rem;font-weight:900;text-transform:uppercase;
                         letter-spacing:-0.03em;font-family:'Manrope',sans-serif;">AGÜERO ARCHITECTS</div>
-            <div style="display:flex;gap:2rem;">
+            <div style="display:flex;flex-wrap:wrap;gap:0.75rem 1.5rem;">
                 <a href="https://www.instagram.com/agueroarchitects/?hl=es-la" target="_blank" class="nav-link">Instagram</a>
                 <a href="https://www.facebook.com/AgueroArquitectos"           target="_blank" class="nav-link">Facebook</a>
                 <a href="https://www.tiktok.com/@agueroarchitects?_r=1&_t=ZS-97ga7UMUzuW" target="_blank" class="nav-link">TikTok</a>
@@ -306,8 +306,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // ── Índice de proyectos
     document.querySelectorAll('.group.py-8').forEach((el, i) => {
         gsap.fromTo(el,
-            { x: 55, opacity: 0 },
-            { x: 0, opacity: 1, duration: 0.8, ease: 'power2.out', delay: i * 0.07,
+            // en movil la entrada lateral sacaba los items del viewport
+            isMobile ? { y: 24, opacity: 0 } : { x: 55, opacity: 0 },
+            { x: 0, y: 0, opacity: 1, duration: 0.8, ease: 'power2.out', delay: i * 0.07,
               scrollTrigger: { trigger: el, start: 'top 90%', once: true } }
         );
     });
