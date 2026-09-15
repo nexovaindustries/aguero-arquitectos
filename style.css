@@ -5,8 +5,8 @@
 .material-symbols-outlined {
     font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
 }
-body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
-html { overflow-x: hidden; }
+body { font-family: 'Inter', sans-serif; overflow-x: clip; }
+html { overflow-x: clip; }
 h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
 
 /* ── Scrollbar ─────────────────────────────────── */
@@ -322,8 +322,7 @@ nav > div { padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right
 
 @media (max-width: 767px) {
     /* Nada debe generar scroll lateral */
-    html, body { max-width: 100%; overflow-x: hidden; }
-    body * { max-width: 100%; }
+    html, body { max-width: 100%; overflow-x: clip; }
     img, video, svg { height: auto; }
 
     /* Los circulos decorativos desbordaban el ancho del viewport */
