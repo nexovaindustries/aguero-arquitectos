@@ -112,10 +112,22 @@ h1, h2, h3, h4, h5, h6, .font-headline { font-family: 'Manrope', sans-serif; }
 .marquee-wrap:hover .marquee-track { animation-play-state: paused; }
 
 /* ── Nav shrink ──────────────────────────────────── */
+/* El padding vive en el div interno, no en el nav: aplicarlo aqui
+   sumaba 24px en vez de encoger la barra al hacer scroll. */
 nav.scrolled {
-    padding-top: 0.75rem !important;
-    padding-bottom: 0.75rem !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     box-shadow: 0 2px 24px rgba(0,0,0,0.08);
+}
+nav.scrolled > div {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+}
+@media (min-width: 768px) {
+    nav.scrolled > div {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+    }
 }
 
 /* ── Grain overlay ───────────────────────────────── */
