@@ -220,3 +220,126 @@ img.grayscale:active,
 }
 
 
+
+/* ══════════════════════════════════════════════════
+   MOVIL — ajuste de viewport y barra superior
+   Estas reglas van en CSS plano a proposito: el build
+   no procesa Tailwind, asi que @apply no llega a aplicarse.
+══════════════════════════════════════════════════ */
+
+/* Clases que dependian de @apply y quedaban sin estilo */
+.nav-link {
+    font-family: 'Manrope', sans-serif;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    font-weight: 500;
+    color: #71717a;
+    transition: color 0.3s ease;
+}
+.nav-link:hover { color: #000; }
+.nav-link.active {
+    color: #000;
+    border-bottom: 2px solid #000;
+    padding-bottom: 0.25rem;
+}
+.project-item {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(0,0,0,0.12);
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+@media (min-width: 768px) {
+    .project-item { padding-top: 4rem; padding-bottom: 4rem; }
+}
+.project-item .project-arrow {
+    opacity: 0.5;
+    transition: all 0.3s ease;
+}
+.project-item:hover .project-arrow { opacity: 1; transform: translateX(0.5rem); }
+.project-hover-img {
+    position: absolute;
+    right: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 12rem;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+    transition: all 0.7s ease;
+}
+.group:hover .project-hover-img { width: 20rem; opacity: 1; }
+
+/* Hero a la altura real del viewport.
+   100svh usa la altura visible con la barra del navegador desplegada,
+   asi que no queda franja vacia ni salta al hacer scroll. */
+.hero-full { height: 100vh; }
+@supports (height: 100svh) {
+    .hero-full { height: 100svh; }
+}
+
+/* Sobre la portada la barra va transparente y en blanco;
+   al hacer scroll footer.js le pone .scrolled y vuelve solida. */
+.nav-hero:not(.scrolled) {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-bottom-color: transparent !important;
+}
+.nav-hero:not(.scrolled) a,
+.nav-hero:not(.scrolled) button,
+.nav-hero:not(.scrolled) .material-symbols-outlined {
+    color: #fff !important;
+}
+.nav-hero:not(.scrolled) .nav-link { color: rgba(255,255,255,0.85) !important; }
+.nav-hero:not(.scrolled) .nav-link.active { border-bottom-color: #fff !important; }
+
+/* Respeta el notch / barra de gestos */
+nav > div { padding-left: max(1.25rem, env(safe-area-inset-left)); padding-right: max(1.25rem, env(safe-area-inset-right)); }
+@media (min-width: 768px) {
+    nav > div { padding-left: max(2rem, env(safe-area-inset-left)); padding-right: max(2rem, env(safe-area-inset-right)); }
+}
+
+@media (max-width: 767px) {
+    /* Nada debe generar scroll lateral */
+    html, body { max-width: 100%; overflow-x: hidden; }
+    body * { max-width: 100%; }
+    img, video, svg { height: auto; }
+
+    /* Los circulos decorativos desbordaban el ancho del viewport */
+    [class*="right-[-"], [class*="bottom-[-"], [class*="left-[-"], [class*="top-[-"] {
+        max-width: 100vw;
+    }
+
+    /* El titular y el parrafo del hero se salian por la derecha */
+    .hero-full h1 {
+        font-size: clamp(1.5rem, 7.4vw, 2.5rem);
+        line-height: 1.05;
+        word-break: normal;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    .hero-full p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        overflow-wrap: break-word;
+    }
+    .hero-full .relative.z-10 { padding-bottom: 4.5rem; }
+}
+
+@media (max-width: 767px) {
+    /* Los items del indice de proyectos llevan px-4 dentro de un contenedor
+       que ya tiene padding propio, y se salian 16px del viewport. */
+    .group.py-8.flex.justify-between.items-center {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+}

@@ -9,8 +9,9 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
+            width: 100%;
             height: 100vh;
+            height: 100svh;
             background-color: #050505; /* Deep rich black for better LED contrast */
             z-index: 999999;
             display: flex;
@@ -109,6 +110,7 @@
         body.preloader-active {
             overflow: hidden;
             height: 100vh;
+            height: 100svh;
         }
     `;
     document.head.appendChild(style);
